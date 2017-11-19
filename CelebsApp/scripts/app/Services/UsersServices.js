@@ -4,7 +4,7 @@ app.factory('userServise', ['$http', function (http) {
     var httpRequestMgr = function (action, method, data) {
         return http({
             method: method || 'GET',
-            url: '/api/ApiCelebs/' + action,
+            url: '/api/ApiUsers/' + action,
             params: method == "GET" ? data : null,
             data: data
              

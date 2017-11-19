@@ -49,22 +49,23 @@
                         ng-model="user.Gender"
                         id="gender"
                         placeholder="Select.."
-                        name="selectUserGender">
-
+                        name="selectUserGender"
+                        required>
+                    <option value="" disabled selected hidden>Select..</option>
                     <option value='0'>Male</option>
                     <option value='1'>Female</option>
                 </select>
 
-                <div class="alert alert-warning" ng-show="myForm.selectUserGender.$invalid">
+                <div class="alert alert-warning" ng-show="myForm.selectUserGender.$invalid && myForm.selectUserGender.$dirty">
                     Gender is Required
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 form-group">
-                <label for="#country">Gender: </label>
+                <label for="#country">Password: </label>
                 <input class="form-control" ng-model="user.Password"
-                       type="password" placeholder="Name.." id="password"
+                       type="text" placeholder="Name.." id="password"
                        name="inputUserPassword" required>
                 <div class="alert alert-warning" ng-show="myForm.inputUserPassword.$invalid && myForm.inputUserPassword.$dirty">
                     Password is required !

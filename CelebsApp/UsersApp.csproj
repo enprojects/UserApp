@@ -141,9 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Users.mdf" />
-    <Content Include="App_Data\Users_log.ldf">
-      <DependentUpon>Users.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\Users_log.ldf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -159,7 +157,6 @@
     <Content Include="scripts\app\app.js" />
     <Content Include="scripts\app\Controllers\UsersController.js" />
     <Content Include="scripts\app\Directives\UsersDirective.js" />
-    <Content Include="scripts\app\Filters\UsersFilter.js" />
     <Content Include="scripts\app\Services\UsersServices.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -173,7 +170,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ApiControllers\ApiCelebsController.cs" />
+    <Compile Include="Controllers\ApiControllers\ApiUsersController.cs" />
     <Compile Include="Controllers\MvcControllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

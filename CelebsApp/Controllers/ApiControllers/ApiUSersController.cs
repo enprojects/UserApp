@@ -16,11 +16,11 @@ namespace CelebsApp.Controllers.ApiControllers
 
 
 
-    public class ApiCelebsController : ApiController
+    public class ApiUsersController : ApiController
     {
         private readonly UsersService service;
 
-        public ApiCelebsController()
+        public ApiUsersController()
         {
             service = new UsersService();
         }
@@ -34,11 +34,10 @@ namespace CelebsApp.Controllers.ApiControllers
         [HttpGet]
         public HttpResponseMessage GetUser(string search)
         {
-            if (!ModelState.IsValid)
-                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ErrMsgs(ModelState.Values));
+            if (!string.IsNullOrEmpty(search))
+                return Request.CreateResponse(HttpStatusCode.OK, service.Get(x => x.FirstName.Contains(search)));
 
-            var result = service.Get(x=>x.FirstName.Contains(search));
-            return Request.CreateResponse(HttpStatusCode.OK, result.ToList());
+            return Request.CreateResponse(HttpStatusCode.OK, service.Get());
         }
 
 
@@ -46,7 +45,7 @@ namespace CelebsApp.Controllers.ApiControllers
         public HttpResponseMessage CreateUser(User user)
         {
             if (!ModelState.IsValid)
-             return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ErrMsgs(ModelState.Values)); 
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ErrMsgs(ModelState.Values));
 
             return CreateResponseMessage(() =>
            {
@@ -54,7 +53,7 @@ namespace CelebsApp.Controllers.ApiControllers
            });
         }
 
-      
+
 
         [HttpPost]
         public HttpResponseMessage UpdateUser(User user)
@@ -73,7 +72,7 @@ namespace CelebsApp.Controllers.ApiControllers
         [HttpPost]
         public HttpResponseMessage DeleteUser(User user)
         {
-          
+
 
             return CreateResponseMessage(() =>
            {
@@ -81,7 +80,7 @@ namespace CelebsApp.Controllers.ApiControllers
            });
         }
 
- 
+
         private HttpResponseMessage CreateResponseMessage(Func<int> func)
         {
             var test = func.Invoke();
@@ -97,7 +96,7 @@ namespace CelebsApp.Controllers.ApiControllers
 
         private string ErrMsgs(ICollection<ModelState> values)
         {
-            return string.Join(",", values.SelectMany(x => x.Errors).Select(x=>x.Exception));
+            return string.Join(",", values.SelectMany(x => x.Errors).Select(x => x.Exception));
         }
     }
 }
